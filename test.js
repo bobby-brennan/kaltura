@@ -23,9 +23,11 @@ KalturaClient.session.start(function(session) {
 
 var getMedia = function() {
   var filter = new Kaltura.objects.KalturaMediaEntryFilter();
+  filter.orderBy = KalturaConstants.KalturaMediaEntryOrderBy.CREATED_AT_ASC;
+  console.log('filter:' + Util.inspect(filter));
   var pager = new Kaltura.objects.KalturaFilterPager();
   console.log('pager:' + Util.inspect(pager));
   KalturaClient.media.listAction(function(results) {
-    console.log('results:' + JSON.stringify(results));
+    console.log('results:' + JSON.stringify(results.objects[0]));
   }, filter, pager);
 }
