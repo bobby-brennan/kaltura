@@ -8,19 +8,17 @@ var KalturaClient = new Kaltura.KalturaClient(Config);
 
 var Session = null;
 
-exports.initialzed = false;
-exports.init = function(callback) {
+var initialize = function(callback) {
   KalturaClient.session.start(function(session) {
     KalturaClient.setKs(session);
     Session = session;
-    exports.initialized = true;
     callback();
   }, KalturaCreds.admin_secret, KalturaCreds.user_id, KalturaConstants.KalturaSessionType.ADMIN,
      KalturaCreds.partner_id, KalturaCreds.session_length);
 }
 
-exports.api.getMedia = function(filterOptions, callback) {
-  if (!initialized) return initialize( function() {exports.api.getMedia(filterOptions, callback)} );
+exports.getMedia = function(filterOptions, callback) {
+  if (!Session) return initialize( function() {exports.api.getMedia(filterOptions, callback)} );
   var filter = new Kaltura.objects.KalturaMediaEntryFilter();
   for (var key in filterOptions) {
     filter[key] = filterOptions[key];
