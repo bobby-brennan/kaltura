@@ -1,7 +1,7 @@
 var FS = require('fs');
 var KalturaConstants = require('./kaltura/KalturaTypes.js');
 var Kaltura = require('./kaltura/KalturaClient.js');
-var KalturaCreds = JSON.parse(FS.readFileSync('kaltura/creds.json'));
+var KalturaCreds = JSON.parse(FS.readFileSync('kaltura-creds.json'));
 
 var Config = new Kaltura.KalturaConfiguration(KalturaCreds.partner_id);
 var KalturaClient = new Kaltura.KalturaClient(Config);
