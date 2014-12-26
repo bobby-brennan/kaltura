@@ -11,8 +11,10 @@ module.exports = function (grunt) {
     console.log('dir:' + __dirname + '/../kaltura');
     var files = FS.readdirSync(__dirname + '/../kaltura');
     console.log('files;' + files.length);
-    FS.mkdirSync(config.lucyDir);
-    FS.mkdirSync(config.lucyDir + '/kaltura');
+    try {
+      FS.mkdirSync(config.lucyDir);
+      FS.mkdirSync(config.lucyDir + '/kaltura');
+    } catch (e) {}
     for (var i = 0; i < files.length; ++i) {
       FS.createReadStream(__dirname + '/../kaltura/' + files[i]).pipe(FS.createWriteStream(config.lucyDir + '/kaltura/' + files[i]));
     }
