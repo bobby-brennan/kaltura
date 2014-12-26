@@ -5,7 +5,7 @@ var FS = require('fs');
 var EJS = require('ejs');
 
 module.exports = function (grunt) {
-  grunt.registerTask('kaltura_wrapper', 'A grunt plugin for generating wrappers the NYTimes API', function () {
+  grunt.registerTask('kaltura_wrapper', 'A grunt plugin for generating wrappers the Kaltura API', function () {
     var config = grunt.config.get('kaltura_wrapper');
     config.wrapperOnly = true;
     console.log('dir:' + __dirname + '/../kaltura');

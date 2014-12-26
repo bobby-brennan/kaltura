@@ -18,13 +18,13 @@ var initialize = function(callback) {
 }
 
 exports.getMedia = function(filterOptions, callback) {
-  if (!Session) return initialize( function() {exports.api.getMedia(filterOptions, callback)} );
+  if (!Session) return initialize( function() {exports.getMedia(filterOptions, callback)} );
   var filter = new Kaltura.objects.KalturaMediaEntryFilter();
   for (var key in filterOptions) {
     filter[key] = filterOptions[key];
   }
   var pager = new Kaltura.objects.KalturaFilterPager();
   KalturaClient.media.listAction(function(results) {
-    callback(results);
+    callback(null, results.objects);
   }, filter, pager);
 }
